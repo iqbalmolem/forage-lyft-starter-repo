@@ -2,9 +2,15 @@ from abc import ABC, abstractmethod
 
 
 class Car(ABC):
-    def __init__(self, last_service_date):
-        self.last_service_date = last_service_date
 
     @abstractmethod
-    def needs_service(self):
-        pass
+    def status(self):
+        pass 
+
+    def need_service(self):
+        battery_service_status, engine_service_status = self.status()
+        for i in [battery_service_status, engine_service_status]:
+            if i:
+                return True 
+            else:
+                return False 
